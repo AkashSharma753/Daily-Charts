@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+
+  <!-- Load plotly.js into the DOM -->
+  <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+  <link rel="stylesheet" href="public/CSS/live.css">
+  <script src="https://kit.fontawesome.com/cb4c646331.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="hack">
+    <a href="http://localhost:8000/profile" class="back" style="text-decoration:none;"><i class="fas fa-backward" ></i> BACK</a>
+  </div>
+  <div class="trade">
+    <form class="" action="index.html" method="post">
+
+      <button type="button" class="buy" onclick="buy()" name="button">BUY</button>
+      <button type="button" class="sell" onclick="sell()" name="button">SELL</button>
+    </form>
+
+
+  </div>
+
+  <h1 id="heading">Live Stock Data</h1>
+  <h2 class="currentprice">Current Stock price :</h2>
+  <h2 class="balance">Current Balance :</h2>
+  <h2 class="bought">Bought at :</h2>
+  <h2 class="profit">Profit/Loss :</h2>
+  <p id="stockPrice"></p>
+  <p id="money"></p>
+  <p id="boughtAt">00</p>
+  <p id="pl">00</p>
+
+  <div id='myDiv'>
+    <!-- Plotly chart will be drawn inside this DIV -->
+  </div>
+  <!-- <script>const response1= fetch('close.csv');
+    const data1= response1.text();
+    console.log(data1);</script> -->
+  <!-- <script src="app.js" charset="utf-8"></script>  -->
+
+  <!-- <script charset="utf-8" > -->
+  <script>
+
+    if (performance.navigation.type == 1) {
+      console.info("This page is reloaded");
+    } else {
+      console.info("This page is not reloaded");
+      localStorage.setItem("currentTotal", "0");
+      localStorage.setItem("moo", "0");
+      localStorage.setItem("heading", "0");
+    }
+    //if the text is in local storage, set the html
+    if (localStorage.currentTotal) {
+      console.log(localStorage.currentTotal);
+      document.getElementById('boughtAt').innerHTML = localStorage.getItem("currentTotal");
+
+    }
+    ;
+    //   //function that gets called for an onclick event
+    //   function myFunction() {
+    // // Store in local storage
+    // localStorage.setItem("currentTotal", "Class current balance total");
+    // //set the inner html to what is in local storage
+    // document.getElementById("class").innerHTML = localStorage.getItem("currentTotal");
+
+    // }
+    
+      if(localStorage.getItem("moo")==="0"){
+        money();
+      }
+     
+    
+      
+
+    function buy() {
+      localStorage.setItem("stopper", "0");
+      fetch('close.csv')
+        .then(dataWrappedByPromise => dataWrappedByPromise.text())
+        .then(data => {
+          console.log("data:" + data);
+          // document.getElementById("boughtAt").innerHTML=data;
+          // Store in local storage
+          localStorage.setItem("currentTotal", data);
+          //set the inner html to what is in local storage
+          
+          const cm =parseFloat(localStorage.getItem("mone"))-parseFloat(localStorage.getItem("currentTotal"));
+          if(cm>0){
+            document.getElementById("boughtAt").innerHTML = localStorage.getItem("currentTotal");
+            document.getElementById("money").innerHTML = parseFloat(localStorage.getItem("mone"))-parseFloat(localStorage.getItem("currentTotal"));
+          }
+          else{
+            alert("Your capital is insufficient to buy the stock");
+          }
+          
+
+        });
+      //  document.getElementById("boughtAt").innerHTML=boughtat;
+    }
+    function sell() {
+      document.getElementById("boughtAt").innerHTML = "0";
+      document.getElementById("pl").innerHTML = "0";
+      localStorage.setItem("stopper", "1");
+      document.getElementById("money").innerHTML = localStorage.getItem("mone");
+    }
+
+    function money() {
+      fetch('money.csv')
+        .then(dataWrappedByPromise => dataWrappedByPromise.text())
+        .then(data => {
+          console.log("data:" + data);
+          // document.getElementById("boughtAt").innerHTML=data;
+          // Store in local storage
+          localStorage.setItem("mone", data);
+          //set the inner html to what is in local storage
+          document.getElementById("money").innerHTML = localStorage.getItem("mone");
+
+
+        });
+
+    }
+
+
+    //    function buy(){
+    //     if (performance.navigation.type == 1) {
+    //   console.info( "This page is reloaded" );
+    // } else {
+    //   console.info( "This page is not reloaded");
+    //   console.log("0000000000000000000000000000000000");
+    //     fetch('close.csv')
+    //           .then(dataWrappedByPromise => dataWrappedByPromise.text())
+    //           .then(data => {
+    //       console.log("data:"+data)
+    //       document.getElementById("boughtAt").innerHTML=data;
+
+
+    //       });
+    // }
+    // performance.navigation.type == 0;
+
+    //   }
+    //document.getElementById("demo").innerHTML = data1;}
+    const datedata = [];
+    const closedata = [];
+    const highdata = [];
+    const lowdata = [];
+    const opendata = []
+
+
+
+    chartit();
+
+    async function chartit() {
+      await getData();
+
+      var trace1 = {
+
+        x: datedata,
+
+        close: closedata,
+
+        decreasing: { line: { color: 'red' } },
+
+        high: highdata,
+
+        increasing: { line: { color: 'green' } },
+
+        line: { color: 'rgba(31,119,180,1)' },
+
+        low: lowdata,
+
+        open: opendata,
+
+        type: 'candlestick',
+        xaxis: 'x',
+        yaxis: 'y'
+      };
+
+      var data = [trace1];
+
+      var layout = {
+        dragmode: 'zoom',
+        margin: {
+          r: 10,
+          t: 25,
+          b: 40,
+          l: 60
+        },
+        showlegend: false,
+        xaxis: {
+          // autorange: true,
+          range: [datedata[0], datedata[(datedata.length) - 1]],
+          rangeslider: { range: [datedata[0], datedata[(datedata.length) - 1]] },
+          title: 'Time (hours:minutes:seconds)',
+          tickformat: '%H~%M~%S',
+          //type: 'date'
+        },
+        yaxis: {
+          autorange: true,
+          type: 'linear'
+        },
+
+        annotations: [
+          {
+            x: datedata[0],
+            y: 0.9,
+            xref: 'x',
+            yref: 'paper',
+
+            font: { color: 'magenta' },
+            showarrow: true,
+            //xanchor: 'right',
+            ax: 0,
+            ay: 0
+          }
+        ],
+
+        shapes: [
+          {
+            type: 'rect',
+            xref: 'x',
+            yref: 'paper',
+            x0: datedata[0],
+            y0: 0,
+            x1: datedata[(datedata.length) - 1],
+            y1: 1,
+            fillcolor: '#d3d3d3',
+            opacity: 0.2,
+            line: {
+              width: 0
+            }
+          }
+        ]
+      };
+      Plotly.newPlot('myDiv', data, layout);
+    }
+    //getdata
+
+    async function getData() {
+      const head = await fetch('heading.csv');
+      const data11 = await head.text();
+      document.getElementById("heading").innerHTML=data11;
+      const response = await fetch('fake.csv');
+      // var parts = "foo/bar/test.html".split("/");  
+      // var result = parts[parts.length - 1]; // Or parts.pop();
+      // const response7 = await fetch('money.csv');
+      // const data7 = await response7.text();
+      // document.getElementById("money").innerHTML=data7;
+      const data = await response.text();
+      console.log(data);
+      const table1 = data.split(",");
+      document.getElementById("stockPrice").innerHTML = table1[table1.length - 1];
+      
+      //numb = numb.toFixed(2);
+      if (localStorage.getItem("stopper") === "0") {
+        if (localStorage.getItem("currentTotal") !== "0") {
+          console.log(localStorage.getItem("currentTotal"));
+          const minus = localStorage.getItem("currentTotal") - (table1[table1.length - 1]);
+          const minu = minus.toFixed(2);
+          //const minus = pl-table1[table1.length-1];
+          
+          document.getElementById("pl").innerHTML = (-1) * minu;
+          if (minu > 0) {
+            document.getElementById("pl").style.color = "red";
+          } else {
+            document.getElementById("pl").style.color = "#125C13";
+          }
+        } else {
+          document.getElementById("pl").innerHTML = 0;
+        }
+        document.getElementById("money").innerHTML = localStorage.getItem("mone")- localStorage.getItem("currentTotal");
+      } else {
+        document.getElementById("boughtAt").innerHTML = "00";
+        document.getElementById("money").innerHTML = localStorage.getItem("mone");
+      }
+
+
+      const table = data.split('\n').slice(1);
+
+      table.forEach(row => {
+        const columns = row.split(',')
+        const date = columns[0];
+        datedata.push(date);
+        const open = columns[1];
+        opendata.push(parseFloat(open));
+        const high = columns[2];
+        highdata.push(parseFloat(high));
+        const low = columns[3];
+        lowdata.push(parseFloat(low));
+        const close = columns[4];
+        closedata.push(parseFloat(close));
+        console.log(open, high, low, close);
+        
+        
+       
+
+
+      });
+    }
+
+  </script>
+
+</body>
+<!-- fetch('http://localhost:3000/')
+    .then((data)=> {
+      //console.log(data);
+      return data.json();
+    }).then((actualdata)=>{
+      console.log(actualdata.charts[0].Low);
+    }).catch((error)=>{
+console.log(error)
+    }) -->
+
+
+</html>
