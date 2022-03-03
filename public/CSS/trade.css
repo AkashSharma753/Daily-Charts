@@ -1,0 +1,213 @@
+body{
+  background-image: linear-gradient(125deg,#2c3e50,#27ae60);
+}
+.A{
+  position: absolute;
+  top: 50px;
+  left: 250px;
+  height: 100px;
+  width: 500px;
+  background: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  transition: 0.8s;
+  padding-left: 5px;
+
+}
+
+
+.A input{
+  font-size: 40px;
+  width: 550px;
+  outline: none;
+  border: none;
+  background: transparent;
+  transition: 0.5s;
+  padding-left: 30px;
+}
+.B{
+  position: absolute;
+  top: 50px;
+  right: 250px;
+  height: 100px;
+  width: 500px;
+  background: #fff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  transition: 0.8s;
+  padding-left: 5px;
+}
+.B input{
+  font-size: 40px;
+  width: 550px;
+  outline: none;
+  border: none;
+  background: transparent;
+  transition: 0.5s;
+  padding-left: 30px;
+}
+.gif{
+  position: absolute;
+  left: 150px;
+  top: 190px;
+
+}
+.searchButton{
+  height: 100px;
+}
+
+.butn{
+  position: absolute;
+  border-radius: 30px;
+  background-color: #fff;
+  height: 60px;
+  width: 60px;
+  align-items: center;
+  top: 65px;
+  right: 150px;
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+.butn:hover{
+  height: 75px;
+  width: 75px;
+  border-radius: 50px;
+
+}
+.gol{
+  position: absolute;
+  color: black;
+  top: 180px;;
+  background-color: rgba(255,255,255,0.85);
+  width: 250px;
+  height: 90px;
+  border-radius: 50px;
+  text-align: center;
+  justify-content: center;
+  padding: auto 0;
+
+}
+.gol:hover{
+  background-color: rgba(255,255,255,1);
+  cursor: pointer;
+}
+.gol h1{
+  position: relative;
+  bottom: 5px;
+  left: 25px;
+}
+.gol p{
+  font-size: 16px;
+  position: relative;
+  bottom: 7px;
+  left: 25px;
+}
+.a1{
+  position: absolute;
+  top: 35%;
+  left:30%;
+  font-size: 12px;
+}
+.b1{
+  position: absolute;
+  top: 50%;
+  left: 30%;
+  font-size: 12px;
+}
+.c1{
+  position: absolute;
+  left: 30%;
+  top: 65%;
+  font-size: 12px;
+}
+
+/* .gol {
+  animation: cssAnimation 1s 3s forwards;
+  opacity: 0;
+}
+
+@keyframes cssAnimation {
+  to   { opacity: 1; }
+} */
+.relimg{
+  position: relative;
+  height: 25px;
+  width: 25px;
+  top: -6px;
+  left: 10px;
+  background-color: #B4FE98;
+  border-radius: 100%;
+  border: solid 2px;
+  padding: 5px;
+}
+.tataimg{
+  position: relative;
+  height: 25px;
+  width: 25px;
+  top: -6px;
+  left: 10px;
+  background-color: #B8E4F0;
+  border-radius: 100%;
+  border: solid 2px;
+  padding: 5px;
+}
+.iciciimg{
+  position: relative;
+  height: 25px;
+  width: 25px;
+  top: -6px;
+  left: 10px;
+  background-color: #FE8F8F;
+  border-radius: 100%;
+  border: solid 2px;
+  padding: 5px;
+}
+.a2{
+  position: absolute;
+  top: 35%;
+  right: 30%;
+  font-size: 12px;
+}
+.b2{
+  position: absolute;
+  top: 50%;
+  right: 30%;;
+  font-size: 12px;
+}
+.c2{
+  position: absolute;
+  right: 30%;;
+  top: 65%;
+  font-size: 12px;
+}
+.hack{
+
+  z-index: 3;
+  color: white;
+  position: relative;
+  left: 40px;
+  top: 20px;
+  width: 20%;
+}
+.back{
+  color: white;
+  font-size: 20px;
+
+}
+.back:hover{
+  color: white;
+}
+.back {
+  animation: cssAnimation 2s 1s forwards;
+  opacity: 0;
+}
+
+@keyframes cssAnimation {
+  to   { opacity: 1; }
+}
+
