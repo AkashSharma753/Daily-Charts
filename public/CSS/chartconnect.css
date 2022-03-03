@@ -1,0 +1,41 @@
+body{
+    background: linear-gradient(120deg,#2980b9,#8e44ad);
+    color: cornsilk;
+}
+h1{
+    position: relative;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    padding-top: 30px;
+    font-size: 40px;
+    font-family: 'Roboto Mono', monospace;
+    text-decoration: underline;
+}
+.hack{
+
+    z-index: 3;
+    color: white;
+    position: relative;
+    left: 40px;
+    top: 20px;
+    width: 20%;
+  }
+  .back{
+    color: white;
+    font-size: 20px;
+  
+  }
+  .back:hover{
+    color: white;
+  }
+  .back {
+    animation: cssAnimation 2s 1s forwards;
+    opacity: 0;
+  }
+  
+  @keyframes cssAnimation {
+    to   { opacity: 1; }
+  }
+

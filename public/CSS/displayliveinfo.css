@@ -1,0 +1,50 @@
+body{
+    background-image: linear-gradient(125deg,#DD4A48,#4F091D);
+    color: white;
+}
+h1{
+    position: relative;
+    width: 50%;
+    text-align: center;
+    margin: 0 auto;
+    padding-bottom: 60px;
+    padding-top: 30px;
+    font-size: 40px;
+    font-family: 'Roboto Mono', monospace;
+    text-decoration: underline;
+    
+}
+.hack{
+
+    z-index: 3;
+    color: white;
+    position: relative;
+    left: 40px;
+    top: 20px;
+    width: 20%;
+  }
+  .back{
+    color: white;
+    font-size: 20px;
+  
+  }
+  .back:hover{
+    color: white;
+  }
+  .back {
+    animation: cssAnimation 2s 1s forwards;
+    opacity: 0;
+  }
+  
+  @keyframes cssAnimation {
+    to   { opacity: 1; }
+  }
+  #companyname{
+
+  }
+  #companyname{
+    
+  }
+  #companyname{
+    
+  }

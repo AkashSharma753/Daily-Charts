@@ -1,0 +1,126 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+}
+body{
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bg{
+  background: url('money.jpg');
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  display: flex;
+  background-size: 100%;
+
+}
+
+.color{
+  background: linear-gradient(to top right,blue,red);
+  width: 100%;
+  height: 100%;
+  opacity: .4;
+  position: absolute;
+
+}
+.container{
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50px;
+  background: white;
+  transition: 0.5s;
+  overflow: hidden;
+}
+.container.active {
+  width: 400px;
+
+
+}
+.container .icon{
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translate(-50%,-50%);
+
+}
+
+.container .icon .search{
+  font-size: 21px;
+  cursor: pointer;
+  color: #444;
+
+}
+.container .input{
+  position: relative;
+  width: 300px;
+  height: 60px;
+  left: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.container .input input{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  font-size: 18px;
+  outline: none;
+}
+
+.container .input .clear{
+  position: absolute;
+  right: -25px;
+  top: 50%;
+  transform: translate(-50%,-50%);
+  cursor: pointer;
+  font-size: 20px;
+  color: #8888;
+
+}
+.heading{
+  position: absolute;
+  top: 30px;
+  color: white;
+  font-size: 50px;
+}
+.click{
+  font-size: 30px;
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%,-50%);
+}
+.Current{
+  position: absolute;
+  top: 500px;
+}
+.lol{
+  font-size: 22px;
+}
+.back{
+
+  color: white;
+  font-size: 20px;
+
+}
+.hack{
+  position: absolute;
+  top:-30px;
+  left: -250px;
+}
+.back {
+  animation: cssAnimation 2s 1s forwards;
+  opacity: 0;
+}
+
+@keyframes cssAnimation {
+  to   { opacity: 1; }
+}
+/* /////////////////////////////// */

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <link rel="stylesheet" href="CSS/chart.css">
+      <script src="https://kit.fontawesome.com/cb4c646331.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <div id="menu">
+      <ul>
+        <li class="nav"><a href="chart" class="a">Charts</a></li>
+        <li class="nav"><a href="trade" class="a">Trade</a></li>
+        <li class="nav"><a href="balance" class="a">Capital</a></li>
+        <li class="nav"><a href="AboutUs-master/AboutUs.html" class="a">About</a></li></ul></div>
+    <div class="hack">
+          <a href="profile" class="back" style="text-decoration:none;"><i class="fas fa-backward" ></i> HOME</a>
+        </div>
+    <div class="center">
+      <h1>Historical Data<img class="info" src="info.gif" alt=""></h1>
+      <form class="" action="/form" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+      <div class="txt_field">
+        <input type="text" name="instrument" required>
+        <span></span>
+        <label>Company Name</label>
+        </div>
+      <div class="txt_field">
+        <input type="date" name="date1" required>
+        <span></span>
+          <label>From</label>
+      </div>
+      <div class="txt_field">
+        <input type="date" name="date2" required>
+        <span></span>
+         <label>Till</label>
+      </div>
+        <!-- <div class="dropdown">
+        <div class="dropdown-select">
+          <span class="select">Time Frame</span>
+          <i class="fa fa-caret-down"></i>
+        </div>
+        <div class="dropdown-list">
+          <div class="dropdown-list-item">1 day </div>
+          <div class="dropdown-list-item">2 day </div>
+          <div class="dropdown-list-item">4 day </div>
+          <div class="dropdown-list-item">5 day </div>
+        </div>
+
+      </div> -->
+      <div class="">
+        <select name="choice" class="lol">
+    <option value="first">1minute</option>
+    <option value="second" selected>3minute</option>
+    <option value="third">5 minute</option>
+    <option value="fouth">10 minute</option>
+    <option value="five" >15 minute</option>
+    <option value="six">30 minute</option>
+    <option value="seven">60 minute</option>
+    <option value="day" selected>day</option>
+  </select>
+      </div>
+      <div class="Submit">
+        <button type="submit" >View Chart</button>
+      </div>
+
+
+      </form>
+
+    </div>
+    <!--<script src="../server.js"></script> -->
+  </body>
+</html>
