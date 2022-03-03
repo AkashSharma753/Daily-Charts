@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  
+  <!-- Load plotly.js into the DOM -->
+  <script src='https://cdn.plot.ly/plotly-2.6.3.min.js'></script>
+  <link rel="stylesheet" href="public/CSS/chartconnect.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/cb4c646331.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+  <div class="hack">
+    <a href="http://localhost:8000/chart" class="back" style="text-decoration:none;"><i class="fas fa-backward" ></i> BACK</a>
+  </div>
+  <h1 id="heading"></h1>
+  
+  <div id='myDiv'>
+    <!-- Plotly chart will be drawn inside this DIV -->
+  </div>
+   <!-- <script src="app.js" charset="utf-8"></script>  -->
+  <script charset="utf-8">
+    
+    const datedata= []; 
+    const closedata=[]; 
+    const highdata=[];
+    const lowdata=[];
+    const opendata=[]
+
+    
+    
+  chartit();
+
+  async function chartit(){
+    await getData();
+
+  var trace1 = {
+
+      x: datedata,
+
+      close: closedata,
+
+      decreasing: {line: {color: 'red'}},
+
+      high: highdata,
+
+      increasing: {line: {color: 'green'}},
+
+      line: {color: 'rgba(31,119,180,1)'},
+
+         low: lowdata,
+
+  open: opendata,
+
+  type: 'candlestick',
+  xaxis: 'x',
+  yaxis: 'y'
+  };
+
+  var data = [trace1];
+  
+  var layout = {
+  dragmode: 'zoom',
+  margin: {
+  r: 10,
+  t: 25,
+  b: 40,
+  l: 60
+  },
+  showlegend: false,
+  xaxis: {
+  // autorange: true,
+  range: [datedata[0],datedata[(datedata.length)-1]],
+  rangeslider: {range: [datedata[0],datedata[(datedata.length)-1]]},
+  title: 'Date',
+  type: 'date'
+  },
+  yaxis: {
+  autorange: true,
+  type: 'linear'
+  },
+
+  annotations: [
+  {
+    x: '2017-01-31',
+    y: 0.9,
+    xref: 'x',
+    yref: 'paper',
+    text: 'largest movement',
+    font: {color: 'magenta'},
+    showarrow: true,
+    xanchor: 'right',
+    ax: -20,
+    ay: 0
+  }
+  ],
+
+  shapes: [
+    {
+        type: 'rect',
+        xref: 'x',
+        yref: 'paper',
+        x0: '2017-01-31',
+        y0: 0,
+        x1: '2017-02-01',
+        y1: 1,
+        fillcolor: '#d3d3d3',
+        opacity: 0.2,
+        line: {
+            width: 0
+        }
+    }
+  ]
+  };
+  Plotly.newPlot('myDiv', data, layout);
+ }
+ fetch('my.csv')
+            .then(dataWrappedByPromise => dataWrappedByPromise.text())
+            .then(data => {
+        const col=data.split(',');
+        
+        const l = col[6].length;
+       
+         document.getElementById("heading").innerHTML=col[6].slice(1,l);
+        // Store in local storage
+        //localStorage.setItem("currentTotal", data);
+        //set the inner html to what is in local storage
+        //document.getElementById("boughtAt").innerHTML = localStorage.getItem("currentTotal");
+        
+        
+        });
+//getdata
+  
+    async function getData(){
+      const response= await fetch('my.csv');
+      const data= await response.text();
+      console.log(data);
+
+      const table= data.split('\n').slice(1);
+      table.forEach(row=>{
+        const columns=row.split(',')
+        const date= columns[0];
+        datedata.push(date);
+        const open= columns[1];
+        opendata.push(parseFloat(open));
+        const high= columns[2];
+        highdata.push(parseFloat(high));
+        const low= columns[3];
+        lowdata.push(parseFloat(low));
+        const close= columns[4];
+        closedata.push(parseFloat(close));
+        console.log( open, high, low, close)
+      });
+    }
+  </script>
+
+</body>
+<!-- fetch('http://localhost:3000/')
+    .then((data)=> {
+      //console.log(data);
+      return data.json();
+    }).then((actualdata)=>{
+      console.log(actualdata.charts[0].Low);
+    }).catch((error)=>{
+console.log(error)
+    }) -->
+
+
+</html>
